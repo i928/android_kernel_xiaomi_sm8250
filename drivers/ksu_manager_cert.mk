@@ -14,4 +14,12 @@ KSU_NEXT_MANAGER_HASH := b22ee43b209e087273ecd9fc2d2b21f0cf58df0f37ded0694d3132e
 # path (no "<pkg>-<hash>" segment for crown_manager()'s path parsing to find),
 # so it needs the real package name given explicitly - see the
 # get_pkg_from_apk_path fallback in kernel/manager/throne_tracker.c.
-KSU_MANAGER_PACKAGE := com.rifsxd.ksunext
+#
+# Renamed 2026-09-11 from com.rifsxd.ksunext to dev.i928.mgr to match sunfish
+# (kernel commit 7bfc18e) so all three devices share ONE hardened manager APK
+# (applicationId + code namespace both dev.i928.mgr; the cert b22ee43b pinned
+# above is unchanged, so no cert re-pin needed). Root/manager detectors keying
+# on the well-known KernelSU-Next package name no longer find the baked manager.
+# Requires the dev.i928.mgr manager APK (~/ksu-manager-build) in this device's
+# /product prebuilt -- rebuild kernel to bake this pin, and ROM to bake the APK.
+KSU_MANAGER_PACKAGE := dev.i928.mgr
